@@ -13,6 +13,7 @@ void cl_application :: build_tree_objects ( )
 	std :: string s_root_name;
 	std :: cin >> s_root_name;
 	this -> set_name ( s_root_name );
+	cl_base * last_added = this;
 	while ( true )
 	{
 		std :: string s_head_name;
@@ -21,18 +22,18 @@ void cl_application :: build_tree_objects ( )
 		{
 			break;
 		}
-		cl_base * p_head = this -> find_ob_st ( s_head_name );
+		cl_base * p_head = last_added -> find_ob_et ( s_head_name );
 		std :: string s_child_name;
 		std :: cin >> s_child_name;
 		int i_class;
 		std :: cin >> i_class;
 		if ( this -> find_ob_st ( s_child_name ) == nullptr ) {
 			switch ( i_class ) {
-				case 2: new cl_2 ( p_head ); break;
-				case 3: new cl_3 ( p_head ); break;
-				case 4: new cl_4 ( p_head ); break;
-				case 5: new cl_5 ( p_head ); break;
-				case 6: new cl_6 ( p_head );
+				case 2: last_added = new cl_2 ( p_head ); break;
+				case 3: last_added = new cl_3 ( p_head ); break;
+				case 4: last_added = new cl_4 ( p_head ); break;
+				case 5: last_added = new cl_5 ( p_head ); break;
+				case 6: last_added = new cl_6 ( p_head );
 			}
 		}
 	}
